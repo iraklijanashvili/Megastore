@@ -1,10 +1,17 @@
+// Home.tsx
+import { useState } from "react";
 import { styled } from "styled-components";
-import ProductList from "../components/ProductList";
-import Products from "./products";
+import ProductList from "./ProductList";
+import NavBar from "./NavBar";
+
+const HomeContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+`;
 
 const ProductContainer = styled.div`
   width: 100%;
-  height: 100%;
   margin-top: 20px;
   display: flex;
   justify-content: center;
@@ -12,9 +19,18 @@ const ProductContainer = styled.div`
 `;
 
 export default function Home() {
+  const [searchQuery, setSearchQuery] = useState<string>("");
+
+  const handleSearch = (query: string) => {
+    setSearchQuery(query);
+  };
+
   return (
-    <ProductContainer>
-      <ProductList />
-    </ProductContainer>
+    <HomeContainer>
+      <NavBar onSearch={handleSearch} />
+      <ProductContainer>
+        <ProductList searchQuery={searchQuery} />
+      </ProductContainer>
+    </HomeContainer>
   );
 }

@@ -24,7 +24,7 @@ import vacuumClenerIcon from "../assets/svg/vacuumCleanerIcon.svg";
 import hairDryerIcon from "../assets/svg/hairDryerIcon.svg";
 import boilerIcon from "../assets/svg/boilerIcon.svg";
 import waterDispnserIcon from "../assets/svg/waterDispenserIcon.svg";
-import Products from "./products";
+import { Products } from "./products";
 
 interface NavItem {
   icon: string;
@@ -208,10 +208,14 @@ const Dot = styled.div<DotProps>`
   cursor: pointer;
 `;
 
-const ProductList: React.FC = () => {
+interface ProductListProps {
+  searchQuery: string;
+}
+const ProductList: React.FC<ProductListProps> = ({ searchQuery }) => {
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [currentSlide, setCurrentSlide] = useState<number>(0);
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+
   const sliderRef = useRef<HTMLDivElement>(null);
   const [startX, setStartX] = useState<number>(0);
   const [isDragging, setIsDragging] = useState<boolean>(false);
@@ -342,7 +346,10 @@ const ProductList: React.FC = () => {
             />
           ))}
         </DotsContainer>
-        <Products selectedCategory={selectedCategory} />
+        <Products
+          selectedCategory={selectedCategory}
+          searchQuery={searchQuery}
+        />
       </SliderContainer>
     </ProductContainer>
   );

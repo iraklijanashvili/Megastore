@@ -22,6 +22,11 @@ import ref4 from "../assets/products/refrigerators/ref4.jpg";
 
 import productCart from "../assets/svg/Productcart.svg";
 
+interface ProductsProps {
+  selectedCategory: string | null;
+  searchQuery: string;
+}
+
 interface Product {
   id?: number;
   image?: string;
@@ -170,7 +175,7 @@ const CartText = styled.p`
   color: white;
 `;
 
-export default function Products({ selectedCategory }: ProductsProps) {
+export function Products({ selectedCategory, searchQuery }: ProductsProps) {
   const productData: Product[] = [
     {
       id: 1,
@@ -334,9 +339,17 @@ export default function Products({ selectedCategory }: ProductsProps) {
       category: "მობილური ტექნიკა",
     },
   ];
-  const filteredProducts = selectedCategory
-    ? productData.filter((product) => product.category === selectedCategory)
-    : productData;
+  const filteredProducts = productData.filter((product) => {
+    const matchesCategory = selectedCategory
+      ? product.category === selectedCategory
+      : true;
+    const matchesSearch =
+      (product.title?.toLowerCase().includes(searchQuery.toLowerCase()) ??
+        false) ||
+      (product.brand?.toLowerCase().includes(searchQuery.toLowerCase()) ??
+        false);
+    return matchesCategory && matchesSearch;
+  });
 
   return (
     <Container>

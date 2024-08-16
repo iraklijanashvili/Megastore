@@ -7,6 +7,11 @@ import telephone from "../assets/svg/telephone.svg";
 import searchIcon from "../assets/svg/searchIcon.svg";
 import geoFlag from "../assets/svg/geoFlag.svg";
 import Logo from "./Logo";
+import { useState } from "react";
+
+interface SearchProps {
+  onSearch: (query: string) => void;
+}
 
 const Header = styled.div`
   width: 100%;
@@ -172,7 +177,9 @@ const IconsTitle = styled.p<IconsTitleProps>`
   }
 `;
 
-export default function NavBar() {
+const NavBar: React.FC<SearchProps> = ({ onSearch }) => {
+  const [searchQuery, setSearchQuery] = useState<string>("");
+
   return (
     <>
       <Header>
@@ -183,11 +190,23 @@ export default function NavBar() {
             </NavLi>
           </NavUl>
           <DesktopSearchContainer>
-            <InputForm type="text" placeholder="" />
-            <SearchBtn>
+            <InputForm
+              type="text"
+              placeholder=""
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  e.preventDefault();
+                  onSearch(searchQuery);
+                }
+              }}
+            />
+            <SearchBtn onClick={() => onSearch(searchQuery)}>
               <img src={searchIcon} alt="Search" />
             </SearchBtn>
           </DesktopSearchContainer>
+
           <NavUl>
             <NavLi>
               <Icons src={globe} alt="" />
@@ -213,12 +232,24 @@ export default function NavBar() {
           </NavUl>
         </Nav>
         <MobileSearchContainer>
-          <InputForm type="text" placeholder="" />
-          <SearchBtn>
+          <InputForm
+            type="text"
+            placeholder=""
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                e.preventDefault();
+                onSearch(searchQuery);
+              }
+            }}
+          />
+          <SearchBtn onClick={() => onSearch(searchQuery)}>
             <img src={searchIcon} alt="Search" />
           </SearchBtn>
         </MobileSearchContainer>
       </Header>
     </>
   );
-}
+};
+export default NavBar;
