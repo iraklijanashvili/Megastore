@@ -68,12 +68,14 @@ const NavLi = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 0px 10px;
+  padding: 0px 16px;
   width: 80%;
+  max-width: 450px;
   margin-bottom: 20px;
   height: 100%;
   @media (min-width: 768px) {
     width: 48%;
+    max-width: 450px;
   }
 
   @media (min-width: 1440px) {
@@ -94,9 +96,17 @@ const Title = styled.p`
   color: #0066c0;
   font-size: 15px;
   font-weight: 500;
-  margin: 10px 0;
+  margin: 10px 0px;
   width: 100%;
   height: 100%;
+  @media (min-width: 1440px) {
+    height: 45px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+  }
 `;
 
 const BrandName = styled.p`
