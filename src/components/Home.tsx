@@ -1,4 +1,3 @@
-// Home.tsx
 import { useState } from "react";
 import { styled } from "styled-components";
 import ProductList from "./ProductList";
@@ -27,9 +26,16 @@ export default function Home() {
 
   return (
     <HomeContainer>
-      <NavBar onSearch={handleSearch} />
+      <NavBar
+        onSearch={handleSearch}
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
+      />
       <ProductContainer>
-        <ProductList searchQuery={searchQuery} />
+        <ProductList
+          searchQuery={searchQuery}
+          setSearchQuery={setSearchQuery}
+        />
       </ProductContainer>
     </HomeContainer>
   );

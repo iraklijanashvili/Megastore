@@ -11,6 +11,8 @@ import { useState } from "react";
 
 interface SearchProps {
   onSearch: (query: string) => void;
+  searchQuery: string;
+  setSearchQuery: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const Header = styled.div`

@@ -212,7 +212,7 @@ export function Products({ selectedCategory, searchQuery }: ProductsProps) {
     {
       id: 5,
       image: tv1,
-      title: "ტელევიზორები TOSHIBA 43V35ME",
+      title: "ტელევიზორი TOSHIBA 43V35ME",
       price: 669,
       brand: "by Toshiba",
       category: "ტელევიზორები",
@@ -220,7 +220,7 @@ export function Products({ selectedCategory, searchQuery }: ProductsProps) {
     {
       id: 6,
       image: tv2,
-      title: "ტელევიზორები TOSHIBA 43V35ME",
+      title: "ტელევიზორი TOSHIBA 43V35ME",
       brand: "by Samsung",
       price: 679,
       category: "ტელევიზორები",
@@ -269,7 +269,7 @@ export function Products({ selectedCategory, searchQuery }: ProductsProps) {
     {
       id: 12,
       image: comp4,
-      title: "სმარტფონი Infinix Infinix Smart 6 HD 2GB/32GB X6512 Blue",
+      title: "ნოუთბუქი Infinix Infinix Smart 6 HD 2GB/32GB X6512 Blue",
       brand: "by Infinix",
       price: 249,
       category: "კომპიუტერული ტექნიკა",
@@ -312,7 +312,7 @@ export function Products({ selectedCategory, searchQuery }: ProductsProps) {
       title: "მაცივარი Hisense DT27DR4-White",
       brand: "by Hisense",
       price: 549,
-      category: "მობილური ტექნიკა",
+      category: "მაცივარი",
     },
     {
       id: 18,
@@ -320,7 +320,7 @@ export function Products({ selectedCategory, searchQuery }: ProductsProps) {
       title: "მაცივარი Hisense DT27DR4-SILVER",
       brand: "by Hisense",
       price: 589,
-      category: "მობილური ტექნიკა",
+      category: "მაცივარი",
     },
     {
       id: 19,
@@ -328,7 +328,7 @@ export function Products({ selectedCategory, searchQuery }: ProductsProps) {
       title: "მაცივარი Hisense DT27DR4-Black",
       brand: "by Hisense",
       price: 629,
-      category: "მობილური ტექნიკა",
+      category: "მაცივარი",
     },
     {
       id: 20,
@@ -336,7 +336,7 @@ export function Products({ selectedCategory, searchQuery }: ProductsProps) {
       title: "მაცივარი Hisense RD-31DR4SA",
       brand: "by Hisense",
       price: 729,
-      category: "მობილური ტექნიკა",
+      category: "მაცივარი",
     },
   ];
   const filteredProducts = productData.filter((product) => {
@@ -347,6 +347,8 @@ export function Products({ selectedCategory, searchQuery }: ProductsProps) {
       (product.title?.toLowerCase().includes(searchQuery.toLowerCase()) ??
         false) ||
       (product.brand?.toLowerCase().includes(searchQuery.toLowerCase()) ??
+        false) ||
+      (product.category?.toLowerCase().includes(searchQuery.toLowerCase()) ??
         false);
     return matchesCategory && matchesSearch;
   });

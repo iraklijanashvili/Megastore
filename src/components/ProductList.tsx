@@ -210,8 +210,13 @@ const Dot = styled.div<DotProps>`
 
 interface ProductListProps {
   searchQuery: string;
+  setSearchQuery: (query: string) => void;
 }
-const ProductList: React.FC<ProductListProps> = ({ searchQuery }) => {
+
+const ProductList: React.FC<ProductListProps> = ({
+  searchQuery,
+  setSearchQuery,
+}) => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [currentSlide, setCurrentSlide] = useState<number>(0);
@@ -317,7 +322,10 @@ const ProductList: React.FC<ProductListProps> = ({ searchQuery }) => {
           {navItems.map(({ icon, title }, index) => (
             <ProductListMenuItem
               key={index}
-              onClick={() => setSelectedCategory(title)}
+              onClick={() => {
+                setSelectedCategory(title);
+                setSearchQuery("");
+              }}
             >
               <ProductListMenuIcon src={icon} alt={title} />
               <ProductListMenuTitle>{title}</ProductListMenuTitle>
