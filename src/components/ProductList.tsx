@@ -285,6 +285,9 @@ const ProductList: React.FC<ProductListProps> = ({
       }
     };
   }, []);
+  useEffect(() => {
+    setSelectedCategory(null);
+  }, [searchQuery]);
 
   const handleTouchStart = (e: TouchEvent) => {
     setStartX(e.touches[0].clientX);

@@ -344,12 +344,9 @@ export function Products({ selectedCategory, searchQuery }: ProductsProps) {
       ? product.category === selectedCategory
       : true;
     const matchesSearch =
-      (product.title?.toLowerCase().includes(searchQuery.toLowerCase()) ??
-        false) ||
-      (product.brand?.toLowerCase().includes(searchQuery.toLowerCase()) ??
-        false) ||
-      (product.category?.toLowerCase().includes(searchQuery.toLowerCase()) ??
-        false);
+      product.title?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      product.brand?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      product.category?.toLowerCase().includes(searchQuery.toLowerCase());
     return matchesCategory && matchesSearch;
   });
 
