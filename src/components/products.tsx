@@ -339,7 +339,7 @@ export function Products({ selectedCategory, searchQuery }: ProductsProps) {
       category: "მაცივარი",
     },
   ];
-  const filteredProducts = productData.filter((product) => {
+  let filteredProducts = productData.filter((product) => {
     const matchesCategory = selectedCategory
       ? product.category === selectedCategory
       : true;
@@ -349,6 +349,10 @@ export function Products({ selectedCategory, searchQuery }: ProductsProps) {
       product.category?.toLowerCase().includes(searchQuery.toLowerCase());
     return matchesCategory && matchesSearch;
   });
+
+  if (selectedCategory && filteredProducts.length === 0) {
+    return <Container>პროდუქტი ვერ მოიძებნა.</Container>;
+  }
 
   return (
     <Container>
